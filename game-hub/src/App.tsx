@@ -11,7 +11,8 @@ import SortSelector from "./components/SortSelector"
 export interface GameQuery {
   genre: Genre | null,
   platform: Platform | null
-  sortOrder: string
+  sortOrder: string,
+  searchText: string
 }
 
 function App(){
@@ -29,7 +30,9 @@ function App(){
     }}
     
     >
-      <GridItem area='nav' marginBottom={3}><NavBar/></GridItem>
+      <GridItem area='nav' marginBottom={3}>
+        <NavBar onSearch={(searchText) => setGameQuery({...gameQuery, searchText})}/>
+      </GridItem>
       <Show when={isAboveMd}>
         <GridItem area='aside' paddingX={5}>
           <GenreList onSelectGenre={(genre) => setGameQuery({...gameQuery, genre})} selectedGenre={gameQuery.genre}/>
