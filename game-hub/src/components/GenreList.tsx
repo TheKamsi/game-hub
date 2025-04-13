@@ -1,6 +1,5 @@
 import { HStack, List, Image, Spinner, Button, Heading } from '@chakra-ui/react'
-import useData from '../hooks/useData'
-import { Genre } from '../hooks/useGenres'
+import useGenres, { Genre } from '../hooks/useGenres'
 import getCroppedImgUrl from '../services/image-url'
 
 interface Props {
@@ -9,7 +8,7 @@ interface Props {
 }
 
 const GenreList = ({ onSelectGenre, selectedGenre }: Props) => {
-  const { data, isLoading, error } = useData<Genre>('/genres')
+  const { data, isLoading, error } = useGenres()
 
   if (error) return null
 
