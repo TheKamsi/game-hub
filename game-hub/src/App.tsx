@@ -13,10 +13,10 @@ function App(){
       base: `"nav" "main"`,
       lg: `"nav nav" "aside main"`
     }}>
-      <GridItem area='nav'><NavBar/></GridItem>
+      <GridItem area='nav' marginBottom={3}><NavBar/></GridItem>
       <Show when={isAboveMd}>
         <GridItem area='aside'>
-        <GenreList/>
+          <GenreList/>
         </GridItem>
       </Show>
       <GridItem area='main'>
