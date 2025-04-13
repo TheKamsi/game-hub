@@ -1,11 +1,12 @@
 import { HStack, Image, Text } from '@chakra-ui/react'
 import logo from '../assets/twitter.png'
+import SearchInput from './SearchInputs'
 
 const NavBar = () => {
   return (
-    <HStack>
+    <HStack marginTop={3}>
         <Image src={logo} boxSize='30px'></Image>
-        <Text>NavBar</Text>
+        <SearchInput/>
     </HStack>
   )
 }
