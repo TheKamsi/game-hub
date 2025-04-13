@@ -16,7 +16,7 @@ const useData = <T>(endpoint: string, requestConfig?: AxiosRequestConfig, deps?:
     const controller = new AbortController()
 
     setIsLoading(true)
-    apiClient.get<FetchResponse<T>>(endpoint, {signal: controller.signal, ...requestConfig})
+    apiClient.get<FetchResponse<T>>( endpoint, {signal: controller.signal, ...requestConfig})
         .then((res: { data: FetchResponse<T> }) => {
             setData(res.data.results)
             setIsLoading(false)
