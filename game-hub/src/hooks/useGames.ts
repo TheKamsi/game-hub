@@ -1,8 +1,5 @@
-import { CanceledError } from "axios"
-import apiClient from "../services/api-client"
-import { useState, useEffect } from "react"
 import useData from "./useData"
-import { Genre } from "./useGenres"
+import { GameQuery } from "@/App"
 
 export interface Platform{
     id: number,
@@ -19,10 +16,11 @@ export interface Game {
 
 }
 
-const useGames = (selectedGenre: Genre | null, selectedPlatform: Platform | null) => useData<Game>('/games', 
+const useGames = (gameQuery: GameQuery) => useData<Game>('/games', 
 {params: { 
-    genres: selectedGenre?.id, platforms:selectedPlatform?.id
+    genres: gameQuery.genre?.id, 
+    platforms: gameQuery.platform?.id
 }}, 
-[selectedGenre?.id, selectedPlatform?.id])
+[gameQuery])
 
 export default useGames

@@ -7,11 +7,13 @@ import { Genre } from "./hooks/useGenres"
 import PlatformSelector from "./components/PlatformSelector"
 import { Platform } from "./hooks/useGames"
 
-
+export interface GameQuery {
+  genre: Genre | null,
+  platform: Platform | null
+}
 
 function App(){
-  const [ selectedGenre, setSelectedGenre ] = useState<Genre | null>(null)
-  const [ selectedPlatform, setSelectedPlatform ] = useState<Platform | null>(null)
+  const [ gameQuery, setGameQuery ] = useState<GameQuery>({} as GameQuery)
   const isAboveMd = useBreakpointValue({ base: false, md: true })
 
   return(
@@ -28,12 +30,12 @@ function App(){
       <GridItem area='nav' marginBottom={3}><NavBar/></GridItem>
       <Show when={isAboveMd}>
         <GridItem area='aside' paddingX={5}>
-          <GenreList onSelectGenre={(genre) => setSelectedGenre(genre)} selectedGenre={selectedGenre}/>
+          <GenreList onSelectGenre={(genre) => setGameQuery({...gameQuery, genre})} selectedGenre={gameQuery.genre}/>
         </GridItem>
       </Show>
       <GridItem area='main'>
-        <PlatformSelector selectedPlatform={selectedPlatform} onSelectPlatform={(platform) => setSelectedPlatform(platform)}/>
-        <GameGrid selectedGenre={selectedGenre} selectedPlatform={selectedPlatform}/>
+        <PlatformSelector selectedPlatform={gameQuery.platform} onSelectPlatform={(platform) => setGameQuery({...gameQuery, platform})}/>
+        <GameGrid gameQuery={gameQuery}/>
       </GridItem>
     </Grid>
   )
